@@ -1,0 +1,46 @@
+Create these as measures in Power BI. Table name: dataanalytics bankcustomers.
+
+Total Customers =
+DISTINCTCOUNT('dataanalytics bankcustomers'[CLIENTNUM])
+
+Churned Customers =
+CALCULATE(
+    [Total Customers],
+    'dataanalytics bankcustomers'[Attrition_Flag] = "Attrited Customer"
+)
+
+Existing Customers =
+CALCULATE(
+    [Total Customers],
+    'dataanalytics bankcustomers'[Attrition_Flag] = "Existing Customer"
+)
+
+Churn Rate =
+DIVIDE([Churned Customers], [Total Customers], 0)
+
+Average Transaction Amount =
+AVERAGE('dataanalytics bankcustomers'[Total_Trans_Amt])
+
+Average Transaction Count =
+AVERAGE('dataanalytics bankcustomers'[Total_Trans_Ct])
+
+Average Credit Limit =
+AVERAGE('dataanalytics bankcustomers'[Credit_Limit])
+
+Average Utilization Ratio =
+AVERAGE('dataanalytics bankcustomers'[Avg_Utilization_Ratio])
+
+Average Inactive Months =
+AVERAGE('dataanalytics bankcustomers'[Months_Inactive_12_mon])
+
+Retention Attention Customers =
+CALCULATE(
+    [Total Customers],
+    'dataanalytics bankcustomers'[Attrition_Flag] = "Existing Customer",
+    'dataanalytics bankcustomers'[Risk_Segment] IN {"High Risk", "Medium Risk"}
+)
+
+Formatting:
+- Format Churn Rate as Percentage with 1 decimal place.
+- Format customer-count measures as whole numbers with thousands separators.
+- Do not format Churn Rate with display units such as K or M.
