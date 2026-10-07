@@ -1,7 +1,7 @@
 # dataanalyticsproject
 credit card customer churn analysis using pandas sql power bi
 
-![PolicyMind AI banner](power.png)
+![PolicyMind AI banner]()
 
 # Credit Card Customer Churn Analysis
 
